@@ -104,7 +104,9 @@ app.factory(
 				var instanceID = buildUploaderElement();
 
 				// Ensure there are mulitpart params - makes life easier when performing
-				// just-in-time updates to the settings during queue processing.
+				// just-in-time updates to the settings during queue processing. Also, we
+				// need to override the button element since we don't want a single click
+				// on the button to trigger file-selection in each of the instances.
 				var uploader = new plupload.Uploader( 
 					mOxie.extend(
 						{},

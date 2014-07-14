@@ -1,7 +1,7 @@
 
 app.directive(
 	"bnImageUploader",
-	function( $window, $rootScope, plupload, PluploadCluster, naturalSort ) {
+	function( $window, $rootScope, PluploadCluster, naturalSort ) {
 
 		// I bind the JavaScript events to the scope.
 		function link( $scope, element, attributes ) {

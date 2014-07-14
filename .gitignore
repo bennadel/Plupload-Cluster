@@ -1,0 +1,8 @@
+
+# Ignore the CodeKit 2 project file.
+config.codekit
+.codekit-cache
+
+# Ignore the files in the uploads.
+app/uploads/*
+!app/uploads/.gitignore

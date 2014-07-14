@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Clustering Plupload Instances For Parallel File Uploads
+	</title>
+
+	<link rel="stylesheet" type="text/css" href="css/app.css"></link>
+</head>
+<body ng-app="PluploadApp">
+
+	<h1>
+		Clustering Plupload Instances For Parallel File Uploads
+	</h1>
+
+	<div ng-controller="ImagesController">
+
+		<!-- 
+			This is the main image uploader. 
+			--
+			NOTE: The uploader directive exposes a "queue" value that can be used to
+			render the list of files inside the uploader.
+		-->
+		<div bn-image-uploader class="m-uploader">
+			<div ng-switch="!! queue.length" class="dropzone">
+
+				<!-- Active upload file queue. -->
+				<ul ng-switch-when="true" class="queue">
+					<li ng-repeat="item in queue track by item.id" class="item">
+
+						{{ item.percent }}%
+
+					</li>
+				</ul>
+
+				<!-- Non-active upload instructions. -->
+				<div ng-switch-when="false" class="instructions">
+
+					Select Files &mdash; or &mdash; Drag-n-Drop Files
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="m-images">
+
+			<ul class="images">
+				<li ng-repeat="image in images track by image.id" class="image">
+
+					<div class="thumbnail">
+						<img ng-src="{{ image.url }}" />
+					</div>
+
+					<div class="name">
+						{{ image.clientFile }}
+					</div>
+
+					<a ng-click="deleteImage( image )" class="delete">&times;</a>
+
+				</li>
+			</ul>
+
+		</div>
+
+	</div>
+
+
+	<!-- Vendor Scripts. -->
+	<script type="text/javascript" src="vendor/plupload/plupload.full.min.js"></script>
+	<!-- Dev script for when you need to see the inner worksing of Plupload. -->
+	<!--
+	<script type="text/javascript" src="vendor/plupload/moxie.js"></script>
+	<script type="text/javascript" src="vendor/plupload/plupload.dev.js"></script>
+	-->
+	<script type="text/javascript" src="vendor/jquery/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="vendor/angular/angular-1.2.18.min.js"></script>
+
+	<!-- Angular Scripts. -->
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/images/image-uploader-directive.js"></script>
+	<script type="text/javascript" src="js/images/images-controller.js"></script>
+	<script type="text/javascript" src="js/images/images-service.js"></script>
+	<script type="text/javascript" src="js/services/natural-sort-service.js"></script>
+	<script type="text/javascript" src="js/services/plupload-cluster.js"></script>
+	<script type="text/javascript" src="js/services/plupload-service.js"></script>
+
+</body>
+</html>
